@@ -358,52 +358,52 @@ class HexBoard:
 
 if __name__ == "__main__":
 
-        gameBoard = HexBoard(7, 7)
+    gameBoard = HexBoard(7, 7)
 
-        boardType = diamond_board
-        errorMessage = ""
+    boardType = diamond_board
+    errorMessage = ""
 
-        while not gameBoard.gameWon():
+    while not gameBoard.gameWon():
+
+        printBoard(gameBoard, boardType)
+
+        if errorMessage:
+            print(errorMessage + "-", end=' ')
+            errorMessage = ""
+
+        if gameBoard.getPlayer() == first_player:
+            gameMove = input("First Player Move: ").strip().upper()
+        elif gameBoard.getPlayer() == second_player:
+            gameMove = input("Second Player Move: ").strip().upper()
+
+        if not gameMove[:1] in [chr(65+moveRow) for moveRow in range(0, gameBoard.getRowCount())]:
+            errorMessage += "Row not valid. "
+        else:
+            moveRow = ord(gameMove[:1])-65
+
+        if not gameMove[1:] in [str(columnItem) for columnItem in range(1, gameBoard.getColumnCount()+1)]:
+            errorMessage += "Column not valid. "
+        else:
+            moveColumn = int(gameMove[1:])-1
+
+        if gameBoard.getCell(moveRow, moveColumn) != no_player:
+            errorMessage += "Cell is already taken. "
+
+        if not errorMessage:
+
+            gameBoard.setCell(moveRow, moveColumn, gameBoard.getPlayer())
+
+            if gameBoard.getPlayer() == first_player:
+                gameBoard.setPlayer(second_player)
+            elif gameBoard.getPlayer() == second_player:
+                gameBoard.setPlayer(first_player)
+
+
+            if gameBoard.gameWon():
 
                 printBoard(gameBoard, boardType)
 
-                if errorMessage:
-                        print(errorMessage + "-", end=' ')
-                        errorMessage = ""
-
-                if gameBoard.getPlayer() == first_player:
-                        gameMove = input("First Player Move: ").strip().upper()
-                elif gameBoard.getPlayer() == second_player:
-                        gameMove = input("Second Player Move: ").strip().upper()
-
-                if not gameMove[:1] in [chr(65+moveRow) for moveRow in range(0, gameBoard.getRowCount())]:
-                        errorMessage += "Row not valid. "
-                else:
-                        moveRow = ord(gameMove[:1])-65
-
-                if not gameMove[1:] in [str(columnItem) for columnItem in range(1, gameBoard.getColumnCount()+1)]:
-                        errorMessage += "Column not valid. "
-                else:
-                        moveColumn = int(gameMove[1:])-1
-
-        if gameBoard.getCell(moveRow, moveColumn) != no_player:
-                errorMessage += "Cell is already taken. "
-
-                if not errorMessage:
-
-                        gameBoard.setCell(moveRow, moveColumn, gameBoard.getPlayer())
-
-                        if gameBoard.getPlayer() == first_player:
-                                gameBoard.setPlayer(second_player)
-                        elif gameBoard.getPlayer() == second_player:
-                                gameBoard.setPlayer(first_player)
-
-
-                if gameBoard.gameWon():
-
-                        printBoard(gameBoard, boardType)
-
-                        if gameBoard.gameWon() == first_player:
-                                print("First Player Won!")
-                        elif gameBoard.gameWon() == second_player:
-                                print("Second Player Won!")
+                if gameBoard.gameWon() == first_player:
+                    print("First Player Won!")
+                elif gameBoard.gameWon() == second_player:
+                    print("Second Player Won!")
