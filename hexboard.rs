@@ -106,7 +106,7 @@ fn main() {
             }
 
             if row_end != rows {
-                print!("   {}", (65+row_end) as u8 as char);
+                print!("   {}", format!("{: >2}", (65+row_end) as u8 as char));
             }
 
             row_end = row_end-1;
@@ -118,5 +118,5 @@ fn main() {
     for _ in 0..cols-1 {
         print!("   ");
     }
-    println!(" {}    {}", format!("{: <2}", cols), (65) as u8 as char);
+    println!(" {}    {}", format!("{: <2}", cols), format!("{: >2}", (65) as u8 as char));
 }
