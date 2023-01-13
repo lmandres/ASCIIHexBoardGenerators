@@ -13,7 +13,7 @@ fn main() {
     let mut col_end: i8 = 1;
 
     println!();
-    for row_index in 0..rows-1 {
+    for _ in 0..rows-1 {
         print!("   ");
     }
     println!(" {}  __ {}", (65+rows-1) as u8 as char, second_piece);
@@ -63,13 +63,13 @@ fn main() {
 
             for loop_index in col_start..col_end {
 
-                let row_index: i8 = if row_start <= 0 {
+                let _: i8 = if row_start <= 0 {
                     loop_index-col_start
                 } else {
                     loop_index+row_start
                 };
 
-                let col_index: i8 = loop_index;
+                let _: i8 = loop_index;
 
                 // Print pieces from game board . . .
                 //print!("/{}{}\\", (65+row_index) as u8 as char, (65+col_index) as u8 as char);
@@ -94,10 +94,10 @@ fn main() {
                 row_end-1
             };
 
-            for loop_index in 0..cell_end {
+            for _ in 0..cell_end {
 
-                let row_index: i8 = loop_index+row_start;
-                let col_index: i8 = loop_index+col_start;
+                //let row_index: i8 = loop_index+row_start;
+                //let col_index: i8 = loop_index+col_start;
 
                 // Print pieces from game board . . .
                 //print!("{}{}\\__/", (65+row_index) as u8 as char, (65+col_index) as u8 as char);
