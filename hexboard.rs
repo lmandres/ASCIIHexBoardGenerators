@@ -16,7 +16,7 @@ fn main() {
     for _ in 0..rows-1 {
         print!("   ");
     }
-    println!(" {}  __ {}", (65+rows-1) as u8 as char, second_piece);
+    println!(" {} __ {}", first_piece, second_piece);
 
     for _ in 0..rows+cols {
         if row_start > 0 {
@@ -25,7 +25,8 @@ fn main() {
                 for _ in 0..row_start-2 {
                     print!("   ");
                 }
-                print!(" {}  __", (65+row_start-2) as u8 as char);
+                //print!(" {}  __", (65+row_start-2) as u8 as char);
+		print!(" {} __", first_piece); 
             } else {
                 for _ in 0..row_start {
                     print!("   ");
@@ -105,7 +106,7 @@ fn main() {
             }
 
             if row_end != rows {
-                print!("   {}", first_piece);
+                print!("   {}", (65+row_end) as u8 as char);
             }
 
             row_end = row_end-1;
@@ -117,5 +118,5 @@ fn main() {
     for _ in 0..cols-1 {
         print!("   ");
     }
-    println!(" {}    {}", format!("{: <2}", cols), first_piece);
+    println!(" {}    {}", format!("{: <2}", cols), (65) as u8 as char);
 }
